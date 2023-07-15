@@ -27,6 +27,7 @@ const processJSON = async response => {
 submitButton.addEventListener("click", async () => {
   event.preventDefault();
   let search = searchInput.value;
+  searchInput.value = "";
 
   try {
     let response = await fetchWeather(search);
