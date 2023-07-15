@@ -2,6 +2,7 @@ let searchInput = document.getElementById("search-input");
 let submitButton = document.getElementById("submit-button");
 
 let location = document.getElementById("location");
+let country = document.getElementById("country");
 let temperature = document.getElementById("temperature");
 let condition = document.getElementById("condition");
 let feelsLike = document.getElementById("feels-like");
@@ -27,18 +28,19 @@ const processJSON = async response => {
 submitButton.addEventListener("click", async () => {
   event.preventDefault();
   let search = searchInput.value;
+  let dataObject;
   try {
     let response = await fetchWeather(search);
-    let dataObject = await processJSON(response);
-
-    location.textContent = dataObject.location.name;
-    temperature.textContent = dataObject.current.temp_f;
-    condition.textContent = dataObject.current.condition.text;
-    feelsLike.textContent = "Feels like: " + dataObject.current.feelslike_f;
-    humidity.textContent = "Humidity: " + dataObject.current.humidity;
-
+    dataObject = await processJSON(response);
     console.log(dataObject);
   } catch (err) {
     alert(err);
   }
+
+  location.textContent = dataObject.location.name;
+  country.textContent = dataObject.location.country;
+  temperature.textContent = dataObject.current.temp_f;
+  condition.textContent = dataObject.current.condition.text;
+  feelsLike.textContent = "Feels like: " + dataObject.current.feelslike_f;
+  humidity.textContent = "Humidity: " + dataObject.current.humidity + "%";
 });

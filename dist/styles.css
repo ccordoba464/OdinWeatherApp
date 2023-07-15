@@ -199,6 +199,10 @@ table {
   font-size: 5rem;
 }
 
+#country {
+  font-size: 2rem;
+}
+
 #temperature {
   font-size: 12rem;
 }
